@@ -36,9 +36,28 @@ namespace MT.AdessoRideShare.API.Controllers
         [HttpDelete]
         public IActionResult RemoveTravelPlan(int id) // exception mekanizması ele alınmadı.
         {
-            var _travelPlan = _travelPlanService.GetByIdAsync(id).Result;
-            _travelPlanService.Delete(_travelPlan);
-            return NoContent();
+            var travelPlan = _travelPlanService.GetByIdAsync(id).Result;
+
+            if (travelPlan != null) {
+                _travelPlanService.Delete(travelPlan);
+                return NoContent();
+            }
+            return BadRequest("Gönderdiğiniz id ye ait seyehat planı bulunmuyor");
+            
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FromWhereToWhere([FromBody] RouteDto route) // exception mekanizması ele alınmadı.
+        {
+            var travelPlan = await _travelPlanService.Find(x => x.ToWhere == route.ToWhere && x.WhereFrom == route.WhereFrom);
+
+            if (travelPlan != null)
+            {
+                
+                return Ok(travelPlan);
+            }
+            return BadRequest("Gönderdiğiniz rotaya ait seyehat planı bulunmuyor");
 
         }
     }
