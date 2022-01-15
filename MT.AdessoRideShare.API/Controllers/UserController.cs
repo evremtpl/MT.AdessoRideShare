@@ -48,12 +48,6 @@ namespace MT.AdessoRideShare.API.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SendJoinRequest(UserDto userDto)
-        {
-            var newUser = await _userService.AddAsync(_mapper.Map<User>(userDto));
-            return Created(string.Empty, _mapper.Map<UserDto>(newUser));
-
-        }
+       
     }
 }

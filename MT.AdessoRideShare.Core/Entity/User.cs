@@ -8,7 +8,7 @@ namespace MT.AdessoRideShare.Core.Entity
 
         public User()
         {
-            TravelPlans = new Collection<TravelPlan>();
+            UserTravelPlans = new Collection<UserTravelPlan>();
         }
         
         public int Id { get; set; }
@@ -16,7 +16,7 @@ namespace MT.AdessoRideShare.Core.Entity
 
         public string SurName { get; set; }
 
-        public ICollection<TravelPlan> TravelPlans { get; set; }
+        public ICollection<UserTravelPlan> UserTravelPlans { get; set; }
        
 
     }

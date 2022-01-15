@@ -33,6 +33,16 @@ namespace MT.AdessoRideShare.Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<string>("FromWhere")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("NumberOfOccupiedSeats")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
                     b.Property<int>("NumberOfSeats")
                         .HasColumnType("int");
 
@@ -44,14 +54,31 @@ namespace MT.AdessoRideShare.Data.Migrations
                     b.Property<DateTime>("TravelTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("WhereFrom")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.HasKey("Id");
 
                     b.ToTable("TravelPlans");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Explanation = "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.",
+                            FromWhere = "ankara",
+                            NumberOfOccupiedSeats = 0,
+                            NumberOfSeats = 5,
+                            ToWhere = "istanbul",
+                            TravelTime = new DateTime(2022, 1, 16, 1, 54, 36, 959, DateTimeKind.Local).AddTicks(1644)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Explanation = "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.",
+                            FromWhere = "Iğdır",
+                            NumberOfOccupiedSeats = 0,
+                            NumberOfSeats = 7,
+                            ToWhere = "ankara",
+                            TravelTime = new DateTime(2022, 1, 16, 1, 54, 36, 962, DateTimeKind.Local).AddTicks(6468)
+                        });
                 });
 
             modelBuilder.Entity("MT.AdessoRideShare.Core.Entity.User", b =>
@@ -76,36 +103,64 @@ namespace MT.AdessoRideShare.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "jack",
+                            SurName = "Nicholson"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Russell",
+                            SurName = "Crowe"
+                        });
                 });
 
-            modelBuilder.Entity("TravelPlanUser", b =>
+            modelBuilder.Entity("MT.AdessoRideShare.Core.Entity.UserTravelPlan", b =>
                 {
-                    b.Property<int>("TravelPlansId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId")
+                    b.Property<int>("TravelPlanId")
                         .HasColumnType("int");
 
-                    b.HasKey("TravelPlansId", "UsersId");
+                    b.HasKey("UserId", "TravelPlanId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("TravelPlanId");
 
-                    b.ToTable("TravelPlanUser");
+                    b.ToTable("UserTravelPlans");
                 });
 
-            modelBuilder.Entity("TravelPlanUser", b =>
+            modelBuilder.Entity("MT.AdessoRideShare.Core.Entity.UserTravelPlan", b =>
                 {
-                    b.HasOne("MT.AdessoRideShare.Core.Entity.TravelPlan", null)
-                        .WithMany()
-                        .HasForeignKey("TravelPlansId")
+                    b.HasOne("MT.AdessoRideShare.Core.Entity.TravelPlan", "TravelPlan")
+                        .WithMany("UserTravelPlans")
+                        .HasForeignKey("TravelPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MT.AdessoRideShare.Core.Entity.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
+                    b.HasOne("MT.AdessoRideShare.Core.Entity.User", "User")
+                        .WithMany("UserTravelPlans")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("TravelPlan");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MT.AdessoRideShare.Core.Entity.TravelPlan", b =>
+                {
+                    b.Navigation("UserTravelPlans");
+                });
+
+            modelBuilder.Entity("MT.AdessoRideShare.Core.Entity.User", b =>
+                {
+                    b.Navigation("UserTravelPlans");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,5 +16,7 @@ namespace MT.AdessoRideShare.Core.Interfaces.Repository
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task AddAsync(TEntity entity);
         void Delete(TEntity entity);
+
+        TEntity Update(TEntity entity);
     }
 }

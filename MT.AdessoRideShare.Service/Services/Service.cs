@@ -48,5 +48,12 @@ namespace MT.AdessoRideShare.Service.Services
         {
             return await _repository.GetByIdAsync(id);
         }
+
+        public TEntity Update(TEntity entity)
+        {
+            TEntity updateEntity = _repository.Update(entity);
+            _unitOfWork.Commit();
+            return updateEntity;
+        }
     }
 }

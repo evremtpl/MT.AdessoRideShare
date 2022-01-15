@@ -15,6 +15,7 @@ namespace MT.AdessoRideShare.API.Mapping
         {
             CreateMap<TravelPlan, TravelPlanDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<UserTravelPlan, RequestDto>().ReverseMap();
         }
     }
 }

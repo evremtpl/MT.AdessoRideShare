@@ -11,20 +11,22 @@ namespace MT.AdessoRideShare.Core.Entity
     {
         public TravelPlan()
         {
-            Users = new Collection<User>();
+            UserTravelPlans = new Collection<UserTravelPlan>();
         }
         public int Id { get; set; }
 
-        public string WhereFrom  { get; set; }
+        public string FromWhere  { get; set; }
 
         public string ToWhere { get; set; }
         public DateTime TravelTime { get; set; }
 
         public int NumberOfSeats { get; set; }
 
+        public int NumberOfOccupiedSeats { get; set; }
+
         public string Explanation { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public ICollection<UserTravelPlan> UserTravelPlans { get; set; }
     }
 }
 

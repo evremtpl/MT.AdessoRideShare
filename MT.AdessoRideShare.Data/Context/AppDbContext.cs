@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MT.AdessoRideShare.Core.Entity;
+using MT.AdessoRideShare.Data.Seeds;
 
 namespace MT.AdessoRideShare.Data.Context
 {
@@ -14,11 +15,14 @@ namespace MT.AdessoRideShare.Data.Context
 
         public DbSet<TravelPlan> TravelPlans { get; set; }
 
-
+        public DbSet<UserTravelPlan> UserTravelPlans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+
+            modelBuilder.ApplyConfiguration(new UserSeed(new int[] { 1, 2 }));
+            modelBuilder.ApplyConfiguration(new TravelPlanSeed(new int[] { 1, 2 }));
         }
     }
 }
