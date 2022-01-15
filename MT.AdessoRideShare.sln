@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.AdessoRideShare.API", "M
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB92465D-585F-43C2-9A6C-FABEEAAB3F93}"
 	ProjectSection(SolutionItems) = preProject
+		Ports.txt = Ports.txt
 		ReadMe.txt = ReadMe.txt
 	EndProjectSection
 EndProject
