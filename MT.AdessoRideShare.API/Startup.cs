@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -5,7 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MT.AdessoRideShare.Core.Interfaces.Repository;
+using MT.AdessoRideShare.Core.Interfaces.Services;
+using MT.AdessoRideShare.Core.Interfaces.UnitOfWork;
 using MT.AdessoRideShare.Data.Context;
+using MT.AdessoRideShare.Data.Repositories;
+using MT.AdessoRideShare.Data.UnitOfWork;
+using MT.AdessoRideShare.Service.Services;
 
 namespace MT.AdessoRideShare.API
 {
@@ -22,6 +29,12 @@ namespace MT.AdessoRideShare.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>(); //bir request enasýnda birden fazla ihtiyaç olursa ayný nesne örneðini kullanýr.
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service<>));
 
 
             services.AddDbContext<AppDbContext>(options => 
