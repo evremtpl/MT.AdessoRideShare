@@ -8,7 +8,7 @@ namespace MT.AdessoRideShare.Core.Entity
 {
    public class TravelPlan
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         public string WhereFrom  { get; set; }
 
