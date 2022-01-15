@@ -1,9 +1,5 @@
 ﻿using MT.AdessoRideShare.Core.Interfaces.UnitOfWork;
 using MT.AdessoRideShare.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MT.AdessoRideShare.Data.UnitOfWork
