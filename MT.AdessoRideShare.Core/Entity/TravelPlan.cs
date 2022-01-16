@@ -26,6 +26,8 @@ namespace MT.AdessoRideShare.Core.Entity
 
         public string Explanation { get; set; }
 
+        public string Route { get; set; }
+
         public ICollection<UserTravelPlan> UserTravelPlans { get; set; }
     }
 }

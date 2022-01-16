@@ -52,7 +52,7 @@ namespace MT.AdessoRideShare.API.Controllers
         [HttpGet]
         public async Task<IActionResult> FromWhereToWhere([FromBody] RouteDto route) // exception mekanizması ele alınmadı.
         {
-            var travelPlan = await _travelPlanService.Find(x => x.ToWhere == route.ToWhere && x.FromWhere == route.WhereFrom);
+            var travelPlan = await _travelPlanService.Find(x => x.ToWhere == route.ToWhere && x.FromWhere == route.FromWhere);
 
             if (travelPlan != null)
             {
@@ -88,6 +88,23 @@ namespace MT.AdessoRideShare.API.Controllers
             else
             {
                 return Ok($"{requestDto.TravelPlanId} li seyehat için boş koltuk bulunmuyor.");
+            }
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<IActionResult> ShowRoute([FromBody] RouteDto route)
+        {
+            {
+                var travelPlan = await _travelPlanService.Find(x => x.Route.Contains( route.FromWhere) && x.Route.Contains(route.ToWhere));
+
+                if (travelPlan != null)
+                {
+
+                    return Ok(travelPlan);
+                }
+                return BadRequest("Gönderdiğiniz rotaya ait seyehat planı bulunmuyor");
+
             }
         }
     }

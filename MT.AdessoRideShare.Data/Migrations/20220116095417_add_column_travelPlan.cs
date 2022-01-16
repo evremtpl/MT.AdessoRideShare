@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MT.AdessoRideShare.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class add_column_travelPlan : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,8 @@ namespace MT.AdessoRideShare.Data.Migrations
                     TravelTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumberOfSeats = table.Column<int>(type: "int", nullable: false),
                     NumberOfOccupiedSeats = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    Explanation = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false)
+                    Explanation = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Route = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,11 +66,11 @@ namespace MT.AdessoRideShare.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "TravelPlans",
-                columns: new[] { "Id", "Explanation", "FromWhere", "NumberOfSeats", "ToWhere", "TravelTime" },
+                columns: new[] { "Id", "Explanation", "FromWhere", "NumberOfSeats", "Route", "ToWhere", "TravelTime" },
                 values: new object[,]
                 {
-                    { 1, "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.", "ankara", 5, "istanbul", new DateTime(2022, 1, 16, 1, 54, 36, 959, DateTimeKind.Local).AddTicks(1644) },
-                    { 2, "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.", "Iğdır", 7, "ankara", new DateTime(2022, 1, 16, 1, 54, 36, 962, DateTimeKind.Local).AddTicks(6468) }
+                    { 1, "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.", "F", 5, "A,B,C,D,E,F", "A", new DateTime(2022, 1, 16, 12, 54, 17, 12, DateTimeKind.Local).AddTicks(3474) },
+                    { 2, "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.", "L", 7, "A,B,O,H,E,L", "A", new DateTime(2022, 1, 16, 12, 54, 17, 14, DateTimeKind.Local).AddTicks(5697) }
                 });
 
             migrationBuilder.InsertData(

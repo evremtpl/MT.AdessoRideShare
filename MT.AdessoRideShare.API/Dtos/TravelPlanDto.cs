@@ -9,7 +9,7 @@ namespace MT.AdessoRideShare.API.Dtos
     public class TravelPlanDto
     {
         [Required] //FluentValidation Kullanılabilir.
-        public string WhereFrom { get; set; }
+        public string FromWhere { get; set; }
         [Required]
         public string ToWhere { get; set; }
         [Required]
@@ -18,6 +18,9 @@ namespace MT.AdessoRideShare.API.Dtos
         public int NumberOfSeats { get; set; }
         [Required]
         public string Explanation { get; set; }
+
+        [Required]
+        public string Route { get; set; }
 
     }
 }

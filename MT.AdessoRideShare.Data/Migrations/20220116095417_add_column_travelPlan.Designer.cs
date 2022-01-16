@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MT.AdessoRideShare.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220115225437_initial")]
-    partial class initial
+    [Migration("20220116095417_add_column_travelPlan")]
+    partial class add_column_travelPlan
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,9 @@ namespace MT.AdessoRideShare.Data.Migrations
                     b.Property<int>("NumberOfSeats")
                         .HasColumnType("int");
 
+                    b.Property<string>("Route")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ToWhere")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -65,21 +68,23 @@ namespace MT.AdessoRideShare.Data.Migrations
                         {
                             Id = 1,
                             Explanation = "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.",
-                            FromWhere = "ankara",
+                            FromWhere = "F",
                             NumberOfOccupiedSeats = 0,
                             NumberOfSeats = 5,
-                            ToWhere = "istanbul",
-                            TravelTime = new DateTime(2022, 1, 16, 1, 54, 36, 959, DateTimeKind.Local).AddTicks(1644)
+                            Route = "A,B,C,D,E,F",
+                            ToWhere = "A",
+                            TravelTime = new DateTime(2022, 1, 16, 12, 54, 17, 12, DateTimeKind.Local).AddTicks(3474)
                         },
                         new
                         {
                             Id = 2,
                             Explanation = "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.",
-                            FromWhere = "Iğdır",
+                            FromWhere = "L",
                             NumberOfOccupiedSeats = 0,
                             NumberOfSeats = 7,
-                            ToWhere = "ankara",
-                            TravelTime = new DateTime(2022, 1, 16, 1, 54, 36, 962, DateTimeKind.Local).AddTicks(6468)
+                            Route = "A,B,O,H,E,L",
+                            ToWhere = "A",
+                            TravelTime = new DateTime(2022, 1, 16, 12, 54, 17, 14, DateTimeKind.Local).AddTicks(5697)
                         });
                 });
 
