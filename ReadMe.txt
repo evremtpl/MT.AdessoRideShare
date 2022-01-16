@@ -41,3 +41,15 @@ http://localhost:5002/api/TravelPlan/SendJoinRequest HttpPost
 http://localhost:5002/api/user HttpPost KullanýcýEkle
 
 http://localhost:5002/api/user HttpDelete KullanýcýKaldýr
+
+http://localhost:5002/api/TravelPlan/ShowRoute HttpGet -opsiyonel olan 2. bölüm için oluþturulmuþtur.
+
+örnek travelPlan post body
+{
+  "fromWhere": "A",
+  "toWhere": "F",
+  "travelTime": "2022-01-15T20:14:02.189Z",
+  "numberOfSeats": 5,
+  "explanation": "Seyehat Dizel araçla 100 km hýzda 2 mola vererek gerçeklestirilecektir.",
+  "route": "A,B,O,P,M,N,F"
+}

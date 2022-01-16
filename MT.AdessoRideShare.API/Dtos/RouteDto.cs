@@ -9,7 +9,7 @@ namespace MT.AdessoRideShare.API.Dtos
     public class RouteDto
     {
         [Required] //FluentValidation Kullanılabilir.
-        public string WhereFrom { get; set; }
+        public string FromWhere{ get; set; }
         [Required]
         public string ToWhere { get; set; }
     }

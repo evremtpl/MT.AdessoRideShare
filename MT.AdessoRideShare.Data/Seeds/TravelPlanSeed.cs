@@ -20,20 +20,23 @@ namespace MT.AdessoRideShare.Data.Seeds
             builder.HasData(new TravelPlan
             {
                 Id= _ids[0],
-                ToWhere = "istanbul",
-                FromWhere="ankara",
+                ToWhere = "A",
+                FromWhere="F",
                 NumberOfSeats=5,
                 TravelTime =DateTime.Now,
-                Explanation= "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir."
+                Explanation= "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.",
+                Route= "A,B,C,D,E,F"
+
             },
             new TravelPlan
             {
                 Id = _ids[1],
-                ToWhere = "ankara",
-                FromWhere = "Iğdır",
+                ToWhere = "A",
+                FromWhere = "L",
                 NumberOfSeats = 7,
                 TravelTime = DateTime.Now,
-                Explanation = "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir."
+                Explanation = "Seyehat Dizel araçla 100 km hızda 2 mola vererek gerçeklestirilecektir.",
+                Route= "A,B,O,H,E,L"
             });
         }
     }
